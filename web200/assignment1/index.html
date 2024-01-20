@@ -1,0 +1,33 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <title>Assignment 1</title>
+    </head>
+    <body>
+        <header><h1 id="headingOne">Assignment 1</h1></header>
+        <main>
+            <div><a href="../index.html">⇦ Back to Navigation</a></div><br>
+            <div id="outputs">
+                <h3>Four Ways to Generate Output</h3>
+
+                <input type="button" value="Click for Output" onclick="output1()">
+                <p id="outputParagraph">Now you see me</p>
+                <br>
+
+                <textarea readonly onmouseover="output2()">Hover over for output</textarea>
+                <br><br>
+
+                <input type="radio" onclick="output3()">Select for a Console Output
+                <br>
+
+                <p>Enter anything for output</p>
+                <input type="text" id="textInput1" onkeyup="output4(this.value,false)">
+            </div>
+        </main>
+        <footer></footer>
+    </body>
+    <noscript>Scripts are disabled, the page may not work.</noscript>
+    <script src="script.js"></script>
+</html>
