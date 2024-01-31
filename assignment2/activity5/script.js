@@ -9,8 +9,8 @@ function getArea(w,l){
         return;
     }
 
-    //Get the area in yards, then round to the hundredths
-    area = (l*w)/3;
+    //Get the area in sqr yards, then round to the hundredths
+    area = (l*w)/9;
     area*=100;
     area=Math.round(area);
     area/=100;
