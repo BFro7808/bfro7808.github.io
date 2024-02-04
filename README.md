@@ -5,3 +5,6 @@ Taking Web200 to refresh and improve upon my skills with web scripting and JavaS
 
 Session 2 - What I remembered
 Since I've a good amount of experience with vars, I did have to reuse some old tricks that I used to use when I first learned it. One of those being rounding a number to the hundredths place via a few lines of math trickery. Otherwise, I haven’t applied a HTML tag inside of a variable string in a while. The techniques used in this session are fundamental to having a solid base from programming, as vars are the corner stone of computing.
+
+Session 3
+This session covered functions which are crucial to making re-usable and easier to maintain code. Functions allow for a set of code to be reused whenever the programmer chooses to call them. An example would be the number rounding function I used, which only requires that I send in a number to get back out a number without having to write the same lines of code repeatedly to round a set of numbers. Functions are something I will always use since their usefulness is important to maintainability and code readability.
