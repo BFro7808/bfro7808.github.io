@@ -8,3 +8,9 @@ Since I've a good amount of experience with vars, I did have to reuse some old t
 
 Session 3
 This session covered functions which are crucial to making re-usable and easier to maintain code. Functions allow for a set of code to be reused whenever the programmer chooses to call them. An example would be the number rounding function I used, which only requires that I send in a number to get back out a number without having to write the same lines of code repeatedly to round a set of numbers. Functions are something I will always use since their usefulness is important to maintainability and code readability.
+
+Session 4
+When I began working on this session, I was under the impression we were going to be using inline events. I hadn't use the event listeners until this point, but I actually liked them quite a lot. Organizing function calls inside the script file feels a lot cleaner and more secure as I read.
+
+Session 5
+needs to be written
