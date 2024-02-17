@@ -13,4 +13,4 @@ Session 4
 When I began working on this session, I was under the impression we were going to be using inline events. I hadn't use the event listeners until this point, but I actually liked them quite a lot. Organizing function calls inside the script file feels a lot cleaner and more secure as I read.
 
 Session 5
-needs to be written
+Session 5 covered logical choices. These sets of decision statements are another foundation of programming. I would say they're probably universally useful as they allow for some lenience in an otherwise rigid and unchanging environment. I plan to use decision statements pretty much everywhere in the future as they are integral for creating various applications of code for programs.
