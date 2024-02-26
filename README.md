@@ -14,3 +14,6 @@ When I began working on this session, I was under the impression we were going t
 
 Session 5
 Session 5 covered logical choices. These sets of decision statements are another foundation of programming. I would say they're probably universally useful as they allow for some lenience in an otherwise rigid and unchanging environment. I plan to use decision statements pretty much everywhere in the future as they are integral for creating various applications of code for programs.
+
+Session 6 & 7
+Good refresher of loops since I haven't done one in a little while. I got right back into the hang of things though and didn't have much of an issue figuring out the logic for looping through an array or nesting another loop within a loop. I overcomplicated session 6's activity a little bit but it still works so I don't see any issues with it. As for usefulness in the industry, loops are very handy for dealing with large sets of data, like an array, or repeating an action over and over without having to write the slightly different lines of code x number of times. Good stuff.
