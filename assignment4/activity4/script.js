@@ -13,6 +13,7 @@ function squareArea(){
 //Get the area of the given shape and output it as an on-screen alert
 function circleArea(){
     let radius = circle_radius.value;
+    radius = Math.pow(radius,2) //Square the radius
     let area = Math.round(Math.PI*radius);
 
     window.alert("The area of the circle would be "+area);
