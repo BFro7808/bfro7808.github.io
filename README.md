@@ -17,3 +17,6 @@ Session 5 covered logical choices. These sets of decision statements are another
 
 Session 6 & 7
 Good refresher of loops since I haven't done one in a little while. I got right back into the hang of things though and didn't have much of an issue figuring out the logic for looping through an array or nesting another loop within a loop. I overcomplicated session 6's activity a little bit but it still works so I don't see any issues with it. As for usefulness in the industry, loops are very handy for dealing with large sets of data, like an array, or repeating an action over and over without having to write the slightly different lines of code x number of times. Good stuff.
+
+Session 8
+Arrays are a fundamental aspect of any program that manages larger sets of data. Since they are quite easy to manipulate and can also even hold arrays within themselves, arrays are extremely handy, no matter how big or small they are. Though there is a limit to how big you would want to go with an array in JS since there is a hard integer limit at some point. Hitting that limit would be somewhat difficult though. Arrays are likely something that I would use often in work, maybe for something like unavailable products listed on a grocery store’s website.
