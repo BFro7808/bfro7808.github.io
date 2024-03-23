@@ -23,3 +23,6 @@ Arrays are a fundamental aspect of any program that manages larger sets of data.
 
 Session 9
 This session covered date time objects and the functions that they have built into them. I learned a bit more on how to work with date objects since I’m relatively unfamiliar with them plus some string manipulation. Working with date & time in general is likely a very useful skill for developing software. Maybe for something like setting a time limit on how long a password is valid for use before it needs to be changed, or how long before a password could be reused. Not so much a web thought but a general tech thought.
+
+Session 10
+My only experience with objects before this was creating classes and making objects from those, which was extremely useful for making games with the HTML canvas. This method of making objects is rather straightforward and I like it. Overall, didn’t have any issues other than when I was trying to incorporate a radio selection into activity 3 and ultimately decided it wasn’t work the trouble. Objects like these could be very useful for keeping track of a set of information in a logical and easy to use way, like having a person object and assigning them a name, date of birth, address, etc..
