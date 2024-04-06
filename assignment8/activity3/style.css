@@ -13,11 +13,36 @@ header {
     background-color: grey;
     color: white;
 }
+
 main{
     margin-left: 50px;
     border-left:thin solid black;
     padding-left: 10px;
 }
+#contentContainer{
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+}
+#contentContainer > div{
+    background-color: rgb(197, 197, 197);
+    border: 3px black solid;
+    padding: 10px;
+    margin: 5px;
+}
+#left{
+    flex: 1;
+    display: none;
+}
+#middle{
+    flex: 1;
+    display: none;
+}
+#right{
+    flex: 1;
+    display: none;
+}
+
 footer {
     background-color: gainsboro;
     margin: 10px;
@@ -27,28 +52,15 @@ a{
     text-decoration: none;
     font-weight: bold;
     font-variant: small-caps;
-}
-a:visited{
-    color: red;
-}
-a:hover{
-    text-decoration: underline;
-}
-.backButton{
-    text-decoration: none;
-    font-weight: bold;
-    font-variant: small-caps;
     color: aliceblue;
     background-color: grey;
     padding: 7px;
     border-radius: 10px;
 }
-.backButton:hover{
+a:hover{
     background-color: rgb(75, 75, 75);
 }
-.backButton:visited{
-    color: aliceblue;
-}
-marquee > h3{
-    font-variant: small-caps;
+embolden{
+    font-weight: bold;
+    color: darkgoldenrod;
 }
