@@ -26,3 +26,6 @@ This session covered date time objects and the functions that they have built in
 
 Session 10
 My only experience with objects before this was creating classes and making objects from those, which was extremely useful for making games with the HTML canvas. This method of making objects is rather straightforward and I like it. Overall, didn’t have any issues other than when I was trying to incorporate a radio selection into activity 3 and ultimately decided it wasn’t work the trouble. Objects like these could be very useful for keeping track of a set of information in a logical and easy to use way, like having a person object and assigning them a name, date of birth, address, etc..
+
+Session 11
+Nothing really big this time around, though I hadn't used the getElementsByTagName function of the document before this, so playing with a little was interesting. Since I didn't do anything big this time around I don't have a whole lot to right about, but an understanding of the DOM and BOM are important for industry work, since being able to dynamically manipulate and read info on a webpage is part of what makes the web so useful.

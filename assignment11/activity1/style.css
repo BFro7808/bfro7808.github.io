@@ -1,0 +1,65 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+#wrapper {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    border: thin solid black;
+}
+header {
+    margin: 10px;
+    padding: 10px;
+    background-color: grey;
+    color: white;
+}
+
+main{
+    margin-left: 50px;
+    border-left:thin solid black;
+    padding-left: 10px;
+}
+#contentContainer{
+    display: flex;
+    flex-direction: row;
+}
+#contentContainer > div > h2{
+    text-align: center;
+}
+#left{
+    flex: 1;
+    margin-left: 25px;
+}
+#middle{
+    flex: 1;
+}
+#right{
+    flex: 1;
+    border-left: solid thick black;
+    margin-left: 25px;
+    padding-left: 50px;
+}
+
+footer {
+    background-color: gainsboro;
+    margin: 10px;
+    padding: 10px;
+}
+a{
+    text-decoration: none;
+    font-weight: bold;
+    font-variant: small-caps;
+    color: aliceblue;
+    background-color: grey;
+    padding: 7px;
+    border-radius: 10px;
+}
+a:hover{
+    background-color: rgb(75, 75, 75);
+}
+.stylishText{
+    border: thin solid black;
+    border-radius: 5px;
+    margin-top: 5px;
+    padding: 10px;
+}
