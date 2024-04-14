@@ -1,0 +1,48 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+#wrapper {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    border: thin solid black;
+}
+header {
+    margin: 10px;
+    padding: 10px;
+    background-color: grey;
+    color: white;
+}
+
+main{
+    margin-left: 50px;
+    border-left:thin solid black;
+    padding-left: 10px;
+}
+form > input{
+    margin-top: 10px;
+}
+
+footer {
+    background-color: gainsboro;
+    margin: 10px;
+    padding: 10px;
+}
+a{
+    text-decoration: none;
+    font-weight: bold;
+    font-variant: small-caps;
+    color: aliceblue;
+    background-color: grey;
+    padding: 7px;
+    border-radius: 10px;
+}
+a:hover{
+    background-color: rgb(75, 75, 75);
+}
+.stylishText{
+    border: thin solid black;
+    border-radius: 5px;
+    margin-top: 5px;
+    padding: 10px;
+}

@@ -29,3 +29,6 @@ My only experience with objects before this was creating classes and making obje
 
 Session 11
 Nothing really big this time around, though I hadn't used the getElementsByTagName function of the document before this, so playing with a little was interesting. Since I didn't do anything big this time around I don't have a whole lot to right about, but an understanding of the DOM and BOM are important for industry work, since being able to dynamically manipulate and read info on a webpage is part of what makes the web so useful.
+
+Session 13
+I kind of liked this session, building out a form is oddly enjoyable. Something big for me this time around was the use of regular expressions. Up until now I had never used them for anything, but always heard about them. While they look strange, I figured out how to do what I wanted with them pretty quickly. From what little I know about regular expressions, I know that they're extremely useful for data processing, along with things like form validation. Forms themselves are pretty much everywhere, so in the industry I'd assume knowning how to make them and more importantly, how to maintain and correct them is a good skill to have.

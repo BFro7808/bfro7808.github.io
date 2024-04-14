@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <title>Assignment 13 - Activity 1</title>
+    </head>
+    <body>
+        <header><h1 id="headingOne">Assignment 13 - Activity 1</h1></header>
+        <main>
+            <div><a href="../index.html">⇦ Back to Assignment 13 Navigation</a></div><br>
+
+            <form name="infoForm" onsubmit="event.preventDefault(); readyFormInfo();">
+                <h2>Delivery Information</h2>
+                <input type="text" name="firstName" placeholder="First Name" required>
+                <br>
+                <input type="text" name="lastName" placeholder="Last Name" required>
+                <br>
+                <input type="text" name="address" placeholder="Address" required>
+                <br>
+                <input type="text" name="city" placeholder="City" required>
+                <br>
+                <input type="text" name="region" placeholder="Region" required>
+                <br>
+                <input type="number" name="postalCode" placeholder="Postal Code" required>
+                <br>
+                <input type="email" name="email" placeholder="Email" required>
+                <br>
+                <input type="text" name="phoneNumber" placeholder="Phone #" id="pNumField" required><!--id here is used for formatting input-->
+                <br>
+                <input type="date" name="dateOfBirth" required>
+                <br>
+                <input type="submit">
+            </form>
+
+            <button id="autoBtn">Auto Fill</button>
+        </main>
+        <footer></footer>
+        <script src="script.js"></script>
+        <noscript>Scripts are disabled, the page may not work.</noscript>
+    </body>
+</html>

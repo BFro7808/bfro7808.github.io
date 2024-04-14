@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <title>Assignment 13 - Activity 2</title>
+    </head>
+    <body onload="setDateMax()">
+        <header><h1 id="headingOne">Assignment 13 - Activity 2</h1></header>
+        <main>
+            <div><a href="../index.html">⇦ Back to Assignment 13 Navigation</a></div><br>
+
+            <form name="infoForm" onsubmit="event.preventDefault(); readyFormInfo();">
+                <h2>Delivery Information - Must be 18 or older</h2>
+                <red>*</red><sub> are required fields</sub><br>
+                <label for="firstName">First Name:</label>
+                <input type="text" name="firstName" placeholder="First Name" required><red> *</red><br>
+
+                <label for="lastName">Last Name:</label>
+                <input type="text" name="lastName" placeholder="Last Name" required><red> *</red><br>
+
+                <label for="address">Address:</label>
+                <input type="text" name="address" placeholder="Address" required><red> *</red><br>
+
+                <label for="city">City:</label>
+                <input type="text" name="city" placeholder="City" required><red> *</red><br>
+
+                <label for="region">Region:</label>
+                <input type="text" name="region" placeholder="Region" required><red> *</red><br>
+
+                <label for="postalCode">Postal Code:</label>
+                <input type="text" name="postalCode" placeholder="Postal Code" maxlength="5" required><red> *</red><br>
+
+                <label for="email">Email Address:</label>
+                <input type="email" name="email" placeholder="Email" required><red> *</red><br>
+
+                <label for="phoneNumber">Phone Number:</label>
+                <input type="tel" name="phoneNumber" placeholder="Phone #" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" 
+                title="10 digit phone number"> (Format as <b>###-###-####</b>)
+                <br>
+
+                <label for="dateOfBirth">Birth Date:</label>
+                <input type="date" name="dateOfBirth" max="2006-04-01" id="dateField" required> <!--this would be better with JS--><red> *</red><br>
+
+                <label for="numberItems">Number of Items:</label>
+                <input type="number" name="numberItems" placeholder="# items" min="1" max="10" required><br>
+                Optional field for data collection purposes, feedback is appreciated. (min = 1, max = 10)<br>
+
+                <input type="submit">
+            </form>
+
+            <button id="autoBtn">Auto Fill</button>
+        </main>
+        <footer></footer>
+        <script src="script.js"></script>
+        <noscript>Scripts are disabled, the page may not work.</noscript>
+    </body>
+</html>
