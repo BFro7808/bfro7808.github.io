@@ -28,7 +28,7 @@ function toggleButtons(btn){
 
         removeTopping(top);
     }
-    //console.table(toppings);
+    console.table(toppings);
 }
 
 function removeTopping(topping){
