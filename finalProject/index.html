@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Papino's Pizza</title>
+</head>
+<body onload="auto()">
+    <header>
+        <img src="img/papinos_banner.jpg" width="95%">
+    </header>
+    <div id="wrapper">
+        <main> 
+            <div id="flexBox">
+                <div id="left">
+                    <h2>Build your Pizza:</h2>
+                    <h3>Select Toppings:</h3>
+
+                    <div id="toppings">
+                        <button value="false" class="toggleOff" onclick="toggleButtons(this)">Pepperoni</button>
+                        <button value="false" class="toggleOff" onclick="toggleButtons(this)">Bacon</button>
+                        <button value="false" class="toggleOff" onclick="toggleButtons(this)">Sausage</button>
+                        <button value="false" class="toggleOff" onclick="toggleButtons(this)">Mushrooms</button>
+                        <br>
+                        <button value="false" class="toggleOff" onclick="toggleButtons(this)">Olives</button>
+                        <button value="false" class="toggleOff" onclick="toggleButtons(this)">Peppers</button>
+                        <button value="false" class="toggleOff" onclick="toggleButtons(this)">Onions</button>
+                        <button value="false" class="toggleOff" onclick="toggleButtons(this)">Pineapple</button>
+                    </div>
+                    
+                </div>
+                <div id="right">
+                    <div id="rightTop">
+                        <h2>Your Order:</h2>
+                    </div>
+
+                    <div id="rightBottom">
+                        <h2>Build your Pizza</h2>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <footer id="footer">
+            Copyright &copy;
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+    <noscript>Scripts are disabled, the page may not work.</noscript>
+</body>
+</html>
