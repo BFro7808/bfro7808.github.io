@@ -15,9 +15,9 @@
             <div id="flexBox">
                 <div id="left">
                     <h2>Build your Pizza:</h2>
-                    <h3>Select Toppings:</h3>
 
-                    <div id="toppings">
+                    <h3>Select Toppings:</h3>
+                    <div id="buttonsGroup">
                         <button value="false" class="toggleOff" onclick="toggleButtons(this)">Pepperoni</button>
                         <button value="false" class="toggleOff" onclick="toggleButtons(this)">Bacon</button>
                         <button value="false" class="toggleOff" onclick="toggleButtons(this)">Sausage</button>
@@ -28,7 +28,18 @@
                         <button value="false" class="toggleOff" onclick="toggleButtons(this)">Onions</button>
                         <button value="false" class="toggleOff" onclick="toggleButtons(this)">Pineapple</button>
                     </div>
+
+                    <h3>Pizza Size:</h3>
+                    <div id="buttonsGroup">
+                        <select id="pizzaSizeSelector">
+                            <option value="medium">Medium</option>
+                            <option value="large">Large</option>
+                            <option value="small">Small</option>
+                        </select>
+                    </div>
                     
+                    <button onclick="let p= new pizza(pizzaSizeSelector.value)">Add To Order</button>
+
                 </div>
                 <div id="right">
                     <div id="rightTop">
