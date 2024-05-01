@@ -15,7 +15,7 @@ let info=[]
 */
 //Takes all form info and stores it into an array for easy use
 function readyFormInfo(){
-    alert("Form info in console");
+    // alert("Form info in console");
     
     info = []; //Clear any previous info
     let form = document.forms["infoForm"];
@@ -31,6 +31,7 @@ function readyFormInfo(){
     info.push(form.dateOfBirth.value);
 
     console.table(info);
+    createUser();
 }
 
 //Fills the form in with junk info for easy testing
