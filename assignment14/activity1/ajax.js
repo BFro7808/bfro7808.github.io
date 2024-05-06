@@ -57,11 +57,11 @@ function createUser(){
 }
 
 function getInfo(){
-    console.log(1)
     let request = new XMLHttpRequest();
     request.open("GET", "ajax_info.json");
     request.onload = function(){
         let data = JSON.parse(request.responseText);
+        console.log(request.status,request.statusText)
         showInfo(data);
     }
     request.send();
@@ -73,12 +73,11 @@ function showInfo(data){
     console.warn(data)
     globalDataVariable = data;
 
-    output.innerHTML="-"
+    output.innerHTML=""
     
     for(let i=0; i<data.length; i++){
         output.innerHTML+=getUserString(data[i],i);
     }
-    console.warn("Thing did the thing")
 }
 
 function getUserString(user,userNum){
