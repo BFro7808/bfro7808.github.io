@@ -71,5 +71,6 @@ let globalDataVariable = 0
 
 function showInfo(data){
     globalDataVariable = data;
-    output.innerHTML=data;
+    output.innerHTML=data[0].firstName;
+    output.innerHTML=data.firstName;
 }
