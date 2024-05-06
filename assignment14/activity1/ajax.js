@@ -7,6 +7,8 @@
 //     xhttp.send();
 //   }
 
+document.getElementById("getBtn").addEventListener("click", getInfo);
+
 //User object function
 function user(
     firstName=null,
@@ -55,12 +57,19 @@ function createUser(){
 
     console.log(x)
     x= JSON.stringify(x)
+    console.log(x)
 
-    let request = new XMLHttpRequest();
-    request.open("POST", "ajax_info.json", true);
-    request.setRequestHeader("Content-Type", "application/json");
-    request.onreadystatechange = function() {
-    console.log("Request: "+request.statusText)
-  };
-  request.send(x);
+    // let request = new XMLHttpRequest();
+    // request.open("POST", "ajax_info.json", true);
+    // request.setRequestHeader("Content-Type", "application/json");
+    // request.onreadystatechange = function() {
+    //     console.log("Request: "+request.statusText)
+    //};
+//   request.send(x);
+}
+
+function getInfo(){
+    fetch('ajax_info.json')
+    .then(data => console.log(data))
+    .catch (error => console.log('Error:' + error));
 }
