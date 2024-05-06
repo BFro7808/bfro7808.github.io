@@ -71,7 +71,6 @@ let globalDataVariable = 0
 
 function showInfo(data){
     console.log(data)
-    console.log(data[1].address)
     output.innerHTML=data;
     globalDataVariable = data;
 }
