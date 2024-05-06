@@ -67,11 +67,11 @@ function getInfo(){
     request.send();
 }
 
-gd = 0
+let globalDataVariable = 0
 
 function showInfo(data){
     console.log(data)
     console.log(data[1].address)
     output.innerHTML=data;
-    gd = data;
+    globalDataVariable = data;
 }
