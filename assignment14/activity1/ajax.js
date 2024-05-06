@@ -62,10 +62,13 @@ function getInfo(){
     request.open("GET", "ajax_info.json");
     request.onload = function(){
         let data = JSON.parse(request.responseText);
-        
-        console.log(data)
-        console.log(data[1])
-        output.innerHTML=data[1].firstName;
+        showInfo(data);
     }
     request.send();
+}
+
+function showInfo(data){
+    console.log(data)
+    console.log(data[1])
+    output.innerHTML=data[1].firstName+"<br>"+output.innerHTML=data[1].lastName;;
 }
