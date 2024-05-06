@@ -70,7 +70,5 @@ function getInfo(){
 let globalDataVariable = 0
 
 function showInfo(data){
-    console.log(data)
-    output.innerHTML=data;
     globalDataVariable = data;
 }
