@@ -7,7 +7,8 @@
     "region":"Right Here",
     "postalCode":"12345",
     "email":"bob@mailsite.com",
-    "phoneNumber":"111-111-1111"
+    "phoneNumber":"111-111-1111",
+    "dateOfBirth":"1987-03-03"
 },
 {
     "firstName":"Lisa",
@@ -17,6 +18,7 @@
     "region":"Right Here",
     "postalCode":"12345",
     "email":"lisa@mailsite.com",
-    "phoneNumber":"222-222-2222"
+    "phoneNumber":"222-222-2222",
+    "dateOfBirth":"1981-12-07"
 }
 ]

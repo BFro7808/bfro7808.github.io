@@ -72,6 +72,22 @@ let globalDataVariable = 0
 function showInfo(data){
     console.warn(data)
     globalDataVariable = data;
-    output.innerHTML=globalDataVariable[0].firstName;
-    output.innerHTML+="<br>"+data[1].firstName;
+
+    output.innerHTML="-"
+    
+    for(let i=0; i<data.length; i++){
+        output.innerHTML+=getUserString(data[i]);
+    }
+    console.warn("Thing did the thing")
+}
+
+function getUserString(user){
+    let str = "Name: "+user.firstName+" "+user.lastName+"<br>"+
+    "Address: "+user.address+" "+user.postalCode+" "+user.region+"<br>"+
+    "Date of Birth: "+user.dateOfBirth
+    "<h3>Contact Info:</h3>"+
+    "Email: "+user.email+"<br>"+
+    "Phone number: "+user.phoneNumber;
+
+    return str;
 }
