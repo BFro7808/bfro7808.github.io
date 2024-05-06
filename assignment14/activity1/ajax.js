@@ -73,4 +73,5 @@ function showInfo(data){
     console.warn(data)
     globalDataVariable = data;
     output.innerHTML=globalDataVariable[0].firstName;
+    output.innerHTML+="<br>"+data[1].firstName;
 }
