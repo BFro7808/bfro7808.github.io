@@ -70,7 +70,7 @@ function getInfo(){
 let globalDataVariable = 0
 
 function showInfo(data){
+    console.warn(data)
     globalDataVariable = data;
-    output.innerHTML=data[0].firstName;
-    output.innerHTML=data.firstName;
+    output.innerHTML=globalDataVariable[0].firstName;
 }
