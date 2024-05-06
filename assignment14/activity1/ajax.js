@@ -67,8 +67,11 @@ function getInfo(){
     request.send();
 }
 
+gd = 0
+
 function showInfo(data){
     console.log(data)
-    console.log(data[1])
-    output.innerHTML=data[1].firstName+"<br>"+data[1].lastName;;
+    console.log(data[1].address)
+    output.innerHTML=data;
+    gd = data;
 }
