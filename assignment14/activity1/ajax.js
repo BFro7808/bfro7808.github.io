@@ -85,7 +85,7 @@ function getUserString(user,userNum){
     "Name: "+user.firstName+" "+user.lastName+"<br>"+
     "Address: "+user.address+" "+user.postalCode+" "+user.region+"<br>"+
     "Date of Birth: "+user.dateOfBirth+
-    "<h6>Contact Info:</h6>"+
+    "->Contact Info:"+
     "Email: "+user.email+"<br>"+
     "Phone number: "+user.phoneNumber+"<br>";
 
