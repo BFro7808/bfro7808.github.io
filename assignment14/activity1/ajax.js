@@ -69,7 +69,7 @@ function createUser(){
 }
 
 function getInfo(){
-    fetch('ajax_info.json')
-    .then(data => console.log(data))
-    .catch (error => console.log('Error:' + error));
+    let data = fetch('ajax_info.json');
+    console.log(data);
+    output.innerHTML=data;
 }
