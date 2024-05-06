@@ -54,18 +54,6 @@ function createUser(){
         info[7],    //- phoneNumber
         info[8]     //- dateOfBirth
     );
-
-    console.log(x)
-    x= JSON.stringify(x)
-    console.log(x)
-
-    let request = new XMLHttpRequest();
-    request.open("POST", "ajax_info.json", true);
-    request.setRequestHeader("Content-Type", "application/json");
-    request.onreadystatechange = function() {
-        console.log("Request: "+request.statusText)
-    };
-  request.send(null);
 }
 
 function getInfo(){
@@ -73,10 +61,11 @@ function getInfo(){
     let request = new XMLHttpRequest();
     request.open("GET", "ajax_info.json");
     request.onload = function(){
-        let data = request.responseText;
+        let data = JSON.parse(request.responseText);
         
         console.log(data)
         console.log(data[1])
+        output.innerHTML=data[1].firstName;
     }
     request.send();
 }
