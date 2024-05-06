@@ -70,5 +70,5 @@ function getInfo(){
 function showInfo(data){
     console.log(data)
     console.log(data[1])
-    output.innerHTML=data[1].firstName+"<br>"+output.innerHTML=data[1].lastName;;
+    output.innerHTML=data[1].firstName+"<br>"+data[1].lastName;;
 }
