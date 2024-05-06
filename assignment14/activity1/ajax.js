@@ -76,18 +76,19 @@ function showInfo(data){
     output.innerHTML="-"
     
     for(let i=0; i<data.length; i++){
-        output.innerHTML+=getUserString(data[i]);
+        output.innerHTML+=getUserString(data[i],i);
     }
     console.warn("Thing did the thing")
 }
 
-function getUserString(user){
-    let str = "Name: "+user.firstName+" "+user.lastName+"<br>"+
+function getUserString(user,userNum){
+    let str = "<h3>User "+userNum+"</h3>"+
+    "Name: "+user.firstName+" "+user.lastName+"<br>"+
     "Address: "+user.address+" "+user.postalCode+" "+user.region+"<br>"+
-    "Date of Birth: "+user.dateOfBirth
-    "<h3>Contact Info:</h3>"+
+    "Date of Birth: "+user.dateOfBirth+
+    "<h6>Contact Info:</h6>"+
     "Email: "+user.email+"<br>"+
-    "Phone number: "+user.phoneNumber;
+    "Phone number: "+user.phoneNumber+"<br>";
 
     return str;
 }
