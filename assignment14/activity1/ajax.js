@@ -59,17 +59,24 @@ function createUser(){
     x= JSON.stringify(x)
     console.log(x)
 
-    // let request = new XMLHttpRequest();
-    // request.open("POST", "ajax_info.json", true);
-    // request.setRequestHeader("Content-Type", "application/json");
-    // request.onreadystatechange = function() {
-    //     console.log("Request: "+request.statusText)
-    //};
-//   request.send(x);
+    let request = new XMLHttpRequest();
+    request.open("POST", "ajax_info.json", true);
+    request.setRequestHeader("Content-Type", "application/json");
+    request.onreadystatechange = function() {
+        console.log("Request: "+request.statusText)
+    };
+  request.send(null);
 }
 
 function getInfo(){
-    let data = fetch('ajax_info.json');
-    console.log(data);
-    output.innerHTML=data;
+    console.log(1)
+    let request = new XMLHttpRequest();
+    request.open("GET", "ajax_info.json");
+    request.onload = function(){
+        let data = request.responseText;
+        
+        console.log(data)
+        console.log(data[1])
+    }
+    request.send();
 }
