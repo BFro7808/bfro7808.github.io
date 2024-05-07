@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="style.css"></link>
+</head>
+<body onload="ginit()">
+    <table class="statsTable">
+        <tr>
+            <th>
+                <canvas id="canvas" width="800" height="900"></canvas>
+            </th>
+            <th>
+                -----------
+            </th>
+            <th>
+                <div id="stats"></div>
+            </th>
+            <th>
+                <div id="debby"></div>
+            </th>
+        </tr>
+    </table>
+
+    <script src="Data/player.js"></script>
+    <script src="Data/playerbullet.js"></script>
+    <script src="Data/playerFollower.js"></script>
+    <script src="Data/playerFollowerBullet.js"></script>
+    <script src="Data/genericEnemy.js"></script>
+    <script src="Data/enemyBullet.js"></script>
+    <script src="Data/itemEntity.js"></script>
+    <script src="Data/sounds.js"></script>
+    <script src="Data/textPop.js"></script>
+    <script src="Data/stageDirector.js"></script>
+    <script src="Data/blast.js"></script>
+
+    <script>
+        /////////////
+        //Game base provided by M256 Intro to Computer Programming Class
+        //Game base included empty update and draw functions plus the init function and newKeys and curKeys
+        /////////////
+        var c
+        var cwidth, cheight
+        var curkeys = []
+        var newkeys = []
+
+        var fps=80
+        //60 fps is good on 144Hz
+        //80 is good on 60Hz
+        const graceAreaMultiplier = 1.1 //How much more space around an enemy should count as a hit with a bullet?
+
+        var playerWeapon="scatter"  //probably shouldn't touch
+        var gameState="menu"    //menu is default
+        var textPopArray=[] //All text pop ups are stored in this array
+
+        var score=0
+        var gameVolume=0.01
+
+        var debug=false
+        var ticks=0
+
+        var gameSound=new soundInitializer()
+
+
+
+        //PLAYER STUFF
+
+        var playerObject=new player()   //This is the player
+        var playerBulletsArray=[]   //Player's bullets
+
+        var blastArray=[]
+
+
+        var playerFollowersArray=[]     //Player's followers
+        var playerFollowerBulletsArray=[]    //Follower bullets
+
+
+        //ENEMY STUFF
+
+        //Generic enemy data
+        var enemyArray=[] // you get the idea
+        var enemyBulletsArray=[]
+
+
+        //OTHER STUFF
+        let hasCheckedMonitorRefreshRate = false //Used for the bit of code right under the gameupdate function
+
+        var itemsArray=[]
+
+
+        function ginit(){   //Function from M256 Intro to Computer Programming Class
+            for (i = 0; i < 256; i++) {
+                curkeys[i] = false;
+                newkeys[i] = false;
+            }
+
+            c=canvas.getContext('2d')
+            cwidth=canvas.width
+            cheight=canvas.height
+            window.addEventListener('keydown',function(e){
+                if (!curkeys[e.keyCode]){
+                    curkeys[e.keyCode] = true
+                    newkeys[e.keyCode] = true
+                }
+            })
+            window.addEventListener('keyup',function(e){curkeys[e.keyCode]=false; })
+            window.requestAnimationFrame(gameupdate)
+        }
+
+
+        function fillStats(){ //move this under gameupdate when finished
+
+            if(debug){
+                //Debug info
+                debby.innerHTML=""
+                debby.innerHTML+="Number of player bullets:<br>"+playerBulletsArray.length+"<br>"
+                debby.innerHTML+="Number of follower bullets:<br>"+playerFollowerBulletsArray.length+"<br>"
+                debby.innerHTML+="Number of enemy bullets:<br>"+enemyBulletsArray.length+"<br>"
+                debby.innerHTML+="Number of alive enemies:<br>"+ enemiesAlive+"<br>"
+                debby.innerHTML+="Enemy Memory: "+ enemyMemory+"/"+ maxEnemyMemory+"<br>"
+                debby.innerHTML+="Stage: "+stage+"  Phase: "+ stagePhase
+            }
+
+            //Meant to keep the gameupdate function cleaner
+            stats.innerHTML=""
+
+            let temp=score+""
+            temp.split("")
+            let len=temp.length
+
+            let scoreDisplay=""
+            for(let i=0;i<9-len;i++){
+                scoreDisplay+="0"
+            }
+            scoreDisplay+="<scoreNumber>"+score
+
+            let scoreList="<h1><scoreHeader>Score</h1>"
+            scoreList+="<h3>"+scoreDisplay+"</h3>"
+            scoreList+="<h1><lifeHeader>Life♡<br>"
+
+            scoreList+="<hp>"
+
+            let h="♡"
+
+            for(let i=0;i<playerObject.hp;i++){
+                scoreList+=h
+            }
+
+            scoreList+="<br><h1><follower>Followers</h1>"
+            scoreList+="<follower>"+playerFollowersArray.length+"/3"
+
+            scoreList += "<br><h1><power>Power</h1>"
+            scoreList+="<power>"+power+"/"+POWER_MAX
+
+            scoreList+="<br><h1><graze>Graze</h1>"
+            scoreList+="<graze>"+graze
+
+            stats.innerHTML+=scoreList
+        }
+
+
+        function gameupdate(){  //Function from M256 Intro to Computer Programming Class
+            if(!hasCheckedMonitorRefreshRate){
+                hasCheckedMonitorRefreshRate=true
+                setTimeout(() => {
+                    if(ticks>61){
+                        console.log("Setting fps to "+144/2+", refresh is likely above 60")
+                        fps=144/2
+                    }
+                }, 1000);
+            }
+            ticks++
+
+            if(gameState=="menu"){
+                for(let i=0;i<curkeys.length;i++){
+                    if(curkeys[i]){
+                        gameState="menuTimeOut"
+                        gameSound.playSound(9)
+                        setTimeout(() => {
+                            gameState="menuConfirm"
+                        }, 1000);
+                    }
+                }
+            }
+
+            else if(gameState=="menuConfirm"){
+                for(let i=0;i<curkeys.length;i++){
+                    if(curkeys[i]){
+                        gameState="play"
+                        gameSound.playSound(9)
+                    }
+                }
+            }
+
+            else if(gameState=="pause"){
+                if (newkeys[27]) pauseGame()
+            }
+
+            else if(gameState=="play"){
+                fillStats()
+                handleStage()
+
+                //Update all text popups
+                for(let i=0;i<textPopArray.length;i++){  
+                    textPopArray[i].update()
+                }
+
+                //Update the player object
+                playerObject.update(curkeys,newkeys) //Firing is handeled in this function
+
+                for(let i=0;i<playerBulletsArray.length;i++){   //Update all of the player's bullets
+                    playerBulletsArray[i].update()
+                }
+
+                for(let i=0;i<playerFollowersArray.length;i++){   //Update all of the player's followers
+                    playerFollowersArray[i].update()
+                }
+
+                for(let i=0;i<playerFollowerBulletsArray.length;i++){   //Update all of the player's followers' bullets
+                    playerFollowerBulletsArray[i].update()
+                }
+                for(let i=0;i<enemyBulletsArray.length;i++){   //Update all of the enemy bullets
+                    enemyBulletsArray[i].update()
+                }
+                //Moving on from the player object
+                //Update Enemies
+                for(let i=0;i<enemyArray.length;i++){
+                    enemyArray[i].update()
+                }
+                //Update all items
+                for(let i=0;i<itemsArray.length;i++){
+                    itemsArray[i].update()
+                }
+                //Update all blasts
+                for(let i=0;i< blastArray.length;i++){
+                    blastArray[i].update()
+                }
+            }
+
+            for (i = 0; i < 256; i++) { newkeys[i] = false }
+            gamedraw()
+            setTimeout(() => {  
+                //Idea from Luke Taylor on Stack Overflow, used to try to keep framerate consistent regardless of monitor refresh rate
+                //Link to that here --> https://stackoverflow.com/a/39135659
+                window.requestAnimationFrame(gameupdate)
+            }, 1000/fps)
+        }
+
+
+        function gamedraw(){    //Function from M256 Intro to Computer Programming Class
+            c.clearRect(0,0,cwidth,cheight) //leave this line alone
+
+            if(gameState=="menu"){
+                c.fillStyle="white"
+
+                //Title
+                c.font="50px Arial"
+                c.fillText("How to Play:",200,100)
+
+                //Body
+                c.font="20px Arial"
+                c.fillText("WASD to move in their respective direction",200,200)
+                c.fillText("Hold SHIFT to focus (slow movement)", 200, 220)
+                c.fillText("You control the blue square, the white square",200,250)
+                c.fillText("is what you need to guide away from enemy",200,270)
+                c.fillText("projectiles (red circle to the right ->)",200,290)
+
+                c.fillStyle="#00FFAA"
+                c.fillText("Green squares are points", 200, 330)
+                c.fillStyle="deepskyblue"
+                c.fillText("Blue circles are power", 200, 350)
+
+                //Draw a fake player
+                c.fillStyle="blue"
+                c.fillRect(650,230,40,40)
+                c.fillStyle="white"
+                c.fillRect(665,245,10,10)
+
+                //Draw a fake bullet
+                c.globalAlpha=0.7
+                c.beginPath()
+                c.arc(530,286,3.5,0,2*Math.PI)
+
+                c.strokeStyle="white"
+                c.lineWidth=7
+                c.stroke()
+
+                c.globalAlpha=1
+                c.fillStyle="red"
+                c.fill()
+
+                //End text
+                c.fillStyle="white"
+                
+                c.fillText("Press Any Key To Continue",300,700)
+            }
+
+            else if(gameState=="menuTimeOut"){
+                c.fillStyle="white"
+                c.fillText("Totally loading important things",300,100)
+            }
+
+            else if(gameState=="menuConfirm"){
+                c.fillStyle="white"
+                c.fillText("Press Any Key To Play",300,100)
+            }
+
+            else if(gameState=="play"||gameState=="pause"||gameState=="lose"){
+
+                //Draw player, draw AI
+
+                playerObject.draw(c)
+
+                for(let i=0;i<playerFollowersArray.length;i++){   //Draw FOLLOWERS
+                    playerFollowersArray[i].draw(c)
+                }
+
+                for(let i=0;i<enemyArray.length;i++){   //Draw ENEMIES
+                    enemyArray[i].draw(c)
+                }
+
+                //Draw bullets underneath player and AI*
+                for(let i=0;i<playerBulletsArray.length;i++){   //Draw PLAYER BULLETS
+                    playerBulletsArray[i].draw(c)
+                }
+
+                for(let i=0;i<playerFollowerBulletsArray.length;i++){   //Draw FOLLOWERS' BULLETS
+                    playerFollowerBulletsArray[i].draw(c)
+                }
+
+                for(let i=0;i<enemyBulletsArray.length;i++){   //Draw ENEMY BULLETS
+                    enemyBulletsArray[i].draw(c)
+                }
+
+                for(let i=0;i<itemsArray.length;i++){  //DRAW ALL ITEMS
+                    itemsArray[i].draw(c)
+                }
+
+                for (let i = 0; i < textPopArray.length; i++) {  //DRAW ALL TEXT POPUPS
+                    textPopArray[i].draw(c)
+                }
+
+                for (let i = 0; i < blastArray.length; i++) {   //DRAW ALL BLASTS
+                    blastArray[i].draw(c)
+                }
+            }
+
+            if (gameState == "lose") {    //Lose can render above all other gamestates minus pause
+                c.fillStyle = "red"
+                c.fillRect(0, 50, cwidth, 150)
+
+                c.font = "bold small-caps 50px Arial"
+                c.fillStyle = "white"
+                c.fillText("YOU LOSE", 270, 100)
+
+                c.font = "20px Arial"
+                c.fillStyle = "white"
+                c.fillText("Refresh to try again", 310, 150)
+            }
+
+            if(gameState=="pause"){    //Pause can render above all other gamestates
+                c.fillStyle="blue"
+                c.fillRect(0,50,cwidth,150)
+
+                c.font = "bold small-caps 50px Arial"
+                c.fillStyle="white"
+                c.fillText("Paused", 310, 140)
+            }
+        }
+
+        function addFollower(){
+            //Player can't have more than 3 followers, use the array length to see if they should be available or not
+            if(playerFollowersArray.length<3){
+                let newFollower=new playerFollower(playerFollowersArray.length)
+                playerFollowersArray.push(newFollower)   
+            }
+        }
+
+        function killAll(){ //Doesn't kill all enemies on screen? Probably from the remove self method running in the enemy class (size changes and it gets confused)
+            for(let i=0;i<enemyArray.length;i++){
+                enemyArray[i].die()
+            }
+        }
+
+        function pauseGame(){   //Used for pausing and unpausing the game
+            gameSound.playSound(9)
+            if(gameState=="play"){
+                gameState="pause"
+                stats.style="display:none;"
+            }
+            else{
+                gameState="play"
+                stats.style = "display:inline;"
+            }
+        }
+    </script>
+</body>
+</html>
+

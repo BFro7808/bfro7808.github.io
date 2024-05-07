@@ -1,0 +1,47 @@
+body{
+    background-color: black;
+}
+canvas{
+    background: #000000;
+    border-style: double;
+    border-width: 2px;
+    border-color: rgb(255, 145, 0);
+}
+div{
+    font-size: 20px;
+    color: aliceblue;
+    text-align: left;
+}
+
+
+h1{
+    font-size: 60px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-bottom: 0px;
+}
+h3{
+    font-size: 30px;
+    margin-top: 0px;
+}
+scoreNumber{
+    color: gold;
+}
+scoreHeader{
+    color: aquamarine;
+}
+lifeHeader{
+    color: hotpink;
+}
+hp{
+    font-size: 30px;
+}
+follower{
+    color: blueviolet;
+}
+power{
+    color: deepskyblue;
+}
+graze{
+    color:orange
+}

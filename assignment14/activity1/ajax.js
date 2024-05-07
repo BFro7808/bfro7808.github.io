@@ -1,12 +1,3 @@
-// function loadDoc() {
-//     const xhttp = new XMLHttpRequest();
-//     xhttp.onload = function() {
-//       document.getElementById("output").innerHTML = this.responseText;
-//       }
-//     xhttp.open("GET", "ajax_info.txt", true);
-//     xhttp.send();
-//   }
-
 document.getElementById("getBtn").addEventListener("click", getInfo);
 
 //User object function
@@ -19,7 +10,8 @@ function user(
     postalCode=null,
     email=null,
     phoneNumber=null
-    ){
+    )
+    {
         this.firstName= firstName;
         this.lastName= lastName;
         this.address= address;
@@ -84,7 +76,7 @@ function getUserString(user,userNum){
     let str = "<h3>User "+userNum+"</h3>"+
     "Name: "+user.firstName+" "+user.lastName+"<br>"+
     "Address: "+user.address+" "+user.postalCode+" "+user.region+"<br>"+
-    "Date of Birth: "+user.dateOfBirth+
+    "Date of Birth: "+user.dateOfBirth+"<br>"+
     "->Contact Info:"+
     "Email: "+user.email+"<br>"+
     "Phone number: "+user.phoneNumber+"<br>";
