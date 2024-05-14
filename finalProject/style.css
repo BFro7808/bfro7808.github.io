@@ -57,6 +57,7 @@ h2{
 .toggleOff{
     margin: 1px;
     background-color: rgb(191, 59, 59);
+    color:rgba(255, 255, 255, 0.719);
 
     border: gray thick solid;
     border-radius: 10px;
@@ -74,4 +75,45 @@ select{
 
     border: gray thick solid;
     border-radius: 10px;
+}
+button{
+    margin: 1px;
+    background-color: #b5b5b5;
+
+    border: gray thick solid;
+    border-radius: 10px;
+    
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: large;
+
+    margin-bottom: 15px;
+}
+button:active{
+    background-color: #695353;
+    color: white;
+}
+
+#orderInfo{
+    display: flex;
+    flex-direction: column;
+}
+
+infoBit{
+    flex-direction: row;
+    display: flex;
+    border-bottom: thin black solid;
+}
+infoLeft{
+    flex: 1;
+}
+infoLeft > img{
+    width: 60%;
+}
+infoRight{
+    flex: 2;
+    margin-left: -15%;
+
+    color: #ffffffc6;
+    font-size: 25px;
 }

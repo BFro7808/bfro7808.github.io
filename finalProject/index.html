@@ -38,16 +38,30 @@
                         </select>
                     </div>
                     
+                    <br>
                     <button onclick="let p= new pizza(pizzaSizeSelector.value)">Add To Order</button>
 
                 </div>
                 <div id="right">
                     <div id="rightTop">
-                        <h2>Your Order:</h2>
+                        <h2>Your Info:</h2>
+
+                        <form name="infoForm" onsubmit="event.preventDefault(); validateForm();" method="POST">
+                            Name for Order
+                            <input type="text" placeholder="Order Name" maxlength="16" id="formName">
+                            <br>
+                            Address
+                            <input type="text" placeholder="Address" maxlength="30" id="formAddress">
+                        </form>
+                        
                     </div>
 
                     <div id="rightBottom">
-                        <h2>Build your Pizza</h2>
+                        <h2>Your Order:</h2>
+                        <button onclick="let o= new order()">Place Order</button>
+                        Count:<span id="count">0</span>
+                        <div id="orderInfo">
+                        </div>
                     </div>
                 </div>
             </div>
