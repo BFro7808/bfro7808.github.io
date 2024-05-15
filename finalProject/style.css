@@ -89,6 +89,10 @@ button{
 
     margin-bottom: 15px;
 }
+button[type=submit]{
+    width: 200px;
+    height: 100px;
+}
 button:active{
     background-color: #695353;
     color: white;
@@ -112,8 +116,14 @@ infoLeft > img{
 }
 infoRight{
     flex: 2;
-    margin-left: -15%;
+    margin-left: -13%;
 
     color: #ffffffc6;
     font-size: 25px;
+}
+#placeOrderDiv{
+    display: none;
+}
+formLabel{
+    font-size: 17pt;
 }

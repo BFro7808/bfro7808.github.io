@@ -14,7 +14,7 @@
         <main> 
             <div id="flexBox">
                 <div id="left">
-                    <h2>Build your Pizza:</h2>
+                    <h2>Step 1: Build your Pizza</h2>
 
                     <h3>Select Toppings:</h3>
                     <div id="buttonsGroup">
@@ -37,31 +37,32 @@
                             <option value="small">Small</option>
                         </select>
                     </div>
-                    
                     <br>
                     <button onclick="let p= new pizza(pizzaSizeSelector.value)">Add To Order</button>
-
-                </div>
-                <div id="right">
-                    <div id="rightTop">
-                        <h2>Your Info:</h2>
-
+                    <br>
+                    <div id="placeOrderDiv">
+                        <h2>Step 3: Enter Info and Order</h2>
                         <form name="infoForm" onsubmit="event.preventDefault(); validateForm();" method="POST">
-                            Name for Order
+                            <formLabel>Name for Order: </formLabel>
                             <input type="text" placeholder="Order Name" maxlength="16" id="formName">
                             <br>
-                            Address
+                            <formLabel>Address: </formLabel>
                             <input type="text" placeholder="Address" maxlength="30" id="formAddress">
                         </form>
-                        
-                    </div>
 
+                        <formLabel>Count:<span id="count">0</span><br>      </formLabel>
+                        <formLabel>Subtotal: $<span id="price">0</span><br> </formLabel>
+                        <formLabel>Total: $<span id="totalPrice">0</span>   </formLabel>
+                        <br>
+                        <button type="submit" onclick="let o= new order()">Place Order</button>
+                    </div>
+                    <br><br><br>
+                </div>
+                <div id="right">
                     <div id="rightBottom">
-                        <h2>Your Order:</h2>
-                        <button onclick="let o= new order()">Place Order</button>
-                        Count:<span id="count">0</span>
-                        <div id="orderInfo">
-                        </div>
+                        <h2>Step 2: Review Your Order</h2>
+                        <div id="orderInfo"></div> <!--Holds all of the pizza visuals-->
+                        <br>
                     </div>
                 </div>
             </div>

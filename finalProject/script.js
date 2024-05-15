@@ -12,53 +12,27 @@ const mediumPizzaPrice=10
 const smallPizzaPrice=7
 const largePizzaPrice=13
 
-function toggleButtons(btn){
-    let top=btn.innerHTML;  //The name of the topping the user is changing, fecthed from the word on the button (very exploitable!)
-    if(btn.value=="false"){ //User enables a topping
-        btn.style="background-color: #00A120;";
-        btn.value=true;
-
-        globalToppings.push(top);
-    }
-    else{   //User disables a topping
-        btn.style="background-color: rgb(191, 59, 59);";
-        btn.value=false;
-
-        removeTopping(top);
-    }
-    console.table(globalToppings);
-}
-
-function removeTopping(topping){
-    let index=null; //The index of the item we want to remove
-    for(let i=0;i<globalToppings.length;i++){
-        if(globalToppings[i]==topping) index=i;
-    }
-    globalToppings.splice(index,1);   //Delete 1 element at the index of the topping we want to remove
-}
-
+//Pizza object, updates order price and updates the on-screen order when created
 function pizza(size){
-    count.innerHTML=pizzaCount++;
-    //Dont reset toppings, maybe they want two?
     this.toppings = globalToppings;
     this.size = size;
+    this.price=0;
     /*Pizza Prices:
     S - $7
     M - $10
     L - $13
     Topping - +0.25
     Then %10 sale tax*/
-    if     (size=="medium")orderPrice+=mediumPizzaPrice;    //Add price based on pizza size
-    else if(size=="small") orderPrice+=smallPizzaPrice;
-    else                   orderPrice+=largePizzaPrice;
+    if     (size=="medium")this.price+=mediumPizzaPrice;//Change this pizza's price based on its size
+    else if(size=="small") this.price+=smallPizzaPrice;
+    else                   this.price+=largePizzaPrice;
+    this.price += 0.25*globalToppings.length;           //Add the price of the toppings to the pizza's price
 
-    orderPrice+=0.25*globalToppings.length; //Add toppings to price
+    //Modify the overall prices of the order
+    orderPrice+=this.price; //Add toppings to price
     orderPriceTotal=roundToHundreths(orderPrice+(orderPrice*0.1));    //Calc tax for total price
 
     pizzas.push(this);  //Add this pizza to the order
-    console.table(pizzas);
-    console.warn("$"+orderPrice,"$"+orderPriceTotal)
-
     updateOrder(this) //Finally, update the order list on screen so the user sees the pizza added
 }
 
@@ -74,24 +48,58 @@ function order(){
     this.address;
 }
 
+function toggleButtons(btn){
+    let top=btn.innerHTML;  //The name of the topping the user is changing, fecthed from the word on the button (very exploitable!)
+    if(btn.value=="false"){ //User enables a topping
+        btn.style="background-color: #00A120;";
+        btn.value=true;
+
+        globalToppings.push(top);
+    }
+    else{   //User disables a topping
+        btn.style="background-color: rgb(191, 59, 59);";
+        btn.value=false;
+
+        removeTopping(top);
+    }
+    // console.table(globalToppings);
+}
+
+function removeTopping(topping){
+    let index=null; //The index of the item we want to remove
+    for(let i=0;i<globalToppings.length;i++){
+        if(globalToppings[i]==topping) index=i;
+    }
+    globalToppings.splice(index,1);   //Delete 1 element at the index of the topping we want to remove
+}
+
 //Refreshes the Your Order list when a new pizza is added
 function updateOrder(pizza){
     let str="<infoBit><infoLeft>";
     //First, add the image depending on the pizza size
-    if(pizza.size=="medium")    str+='<img src="img/iconPizzaMedium.png">'
-    else if(pizza.size=="small")str+='<img src="img/iconPizzaSmall.png">'
-    else str+='<img src="img/iconPizzaLarge.png">'
+    if(pizza.size=="medium")    str+='<img src="img/iconPizzaMedium.png">';
+    else if(pizza.size=="small")str+='<img src="img/iconPizzaSmall.png">';
+    else str+='<img src="img/iconPizzaLarge.png">';
 
-    str+="</infoLeft><infoRight><br><br>"
+    str+="</infoLeft><infoRight>";
     //Reformat word with capFirstLetter()
-    str+=capFirstLetter(pizza.size)+"<br>"
+    str+=capFirstLetter(pizza.size)+"<br>";
     //Use getToppingsList(pizza) to get a list of toppings
-    str+=getToppingsList(pizza)
+    str+=getToppingsList(pizza)+"<br>";
+    //Attach the price of the individual pizza to the info
+    str+="Price: $"+formatCurrency(pizza.price);
 
-    //Close of bit
-    str+="</infoRight></infoBit><br>"
-    console.log(str)
+    //Close off the info bit
+    str+="</infoRight></infoBit><br>";
     orderInfo.innerHTML+=str;
+
+    //Update the placeorder area visuals
+    count.innerHTML=pizzaCount++;//Add 1 to the pizza counter
+    price.innerHTML=formatCurrency(orderPrice);
+    totalPrice.innerHTML=formatCurrency(orderPriceTotal);
+
+    placeOrderDiv.style="display:inline"; //Unhide the place order section
+    console.table(pizzas);
 }
 /* Each order info bit will look like this:
 Pizza image     Pizza Size
@@ -131,4 +139,26 @@ function getToppingsList(pizza){
         else list+=pizza.toppings[i];
     }
     return list;
+}
+
+//Overcomplex function that reformats a number to look like USD currency, DOES NOT attach a $
+function formatCurrency(num){
+    numArray=String(num).split(""); //Split number into an array of chars
+    // console.log("Number to modify:",numArray)
+    let periodIndex
+    for(let i=0; i<numArray.length;i++){
+        if(numArray[i]=="."){   //If we find the period in the string, then record its index
+            periodIndex=i;
+            break;
+        }
+        periodIndex=null; //If we don't find a period, record it
+    }
+    if(periodIndex!=null){ //If we found a period
+        //If there is only one number following the period, like: .5
+        if(String(num).substring(periodIndex).length==2) return num+"0"
+        //Otherwise, just return the number we got
+        return num
+    }
+    //If we didn't find a period, return with a .00 attached
+    else return num+".00";
 }
