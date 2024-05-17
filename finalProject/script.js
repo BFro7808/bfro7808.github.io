@@ -8,13 +8,24 @@ let orderPrice=0        //Price of order without tax
 let orderPriceTotal=0   //Price of order with tax
 let pizzaCount=1        //How many pizza's in order - is always one behind actual pizza count, VISUAL DISPLAY ONLY
 
+const toppingButtonArray=[
+    document.getElementById("topBtn0"),
+    document.getElementById("topBtn1"),
+    document.getElementById("topBtn2"),
+    document.getElementById("topBtn3"),
+    document.getElementById("topBtn4"),
+    document.getElementById("topBtn5"),
+    document.getElementById("topBtn6"),
+    document.getElementById("topBtn7")
+] //Easy access array of toppings buttons IDs
+
 const mediumPizzaPrice=10
 const smallPizzaPrice=7
 const largePizzaPrice=13
 
 //Pizza object, updates order price and updates the on-screen order when created
-function pizza(size){
-    this.toppings = globalToppings;
+function pizza(size,toppings){
+    this.toppings = toppings;
     this.size = size;
     this.price=0;
     /*Pizza Prices:
@@ -44,6 +55,13 @@ function pizza(size){
 
     pizzas.push(this);  //Add this pizza to the order
     updateOrder(this) //Finally, update the order list on screen so the user sees the pizza added
+}
+
+//Makes a new pizza object and then resets the topping buttons
+//The pizza object handles the rest of its own creation in its pseudo constructor thing
+function addPizza(){
+    let p= new pizza(pizzaSizeSelector.value,globalToppings)
+    resetToppingsButtons();
 }
 
 //Order object, saves the following data: pizzas being ordered, price, totalprice, form info
@@ -111,6 +129,8 @@ function removeTopping(topping){
 
 //Refreshes the Your Order list when a new pizza is added
 function updateOrder(pizza){
+    globalToppings=[];   //this fixes it??? DO NOT TOUCH
+
     let str="<infoBit><infoLeft>";
     //First, add the image depending on the pizza size
     if(pizza.size=="medium")    str+='<img src="img/iconPizzaMedium.png">';
@@ -153,7 +173,7 @@ function auto(){
 function autoYear(){
     let d = new Date;
     let year= d.getFullYear();
-    footer.innerHTML="&copy;"+year;
+    footer.innerHTML="&copy;"+year+" Papino Pulipouley";
 }
 
 //Returns the number rounded to the hundreths
@@ -164,7 +184,8 @@ function roundToHundreths(num){
 
 //Returns a word with the first letter capitalized
 function capFirstLetter(word){
-    return String(word).substring(0,1).toUpperCase()+word.substring(1); //Capitalize the first letter and then reattach the rest of the word and return it
+    //Capitalize the first letter and then reattach the rest of the word and return it
+    return String(word).substring(0,1).toUpperCase()+word.substring(1);
 }
 
 //Returns a list of all the toppings on a pizza in a comma delimited format
@@ -207,7 +228,7 @@ function autoFill(){
     request.open("GET", "auto_info.json");
     request.onload = function(){
         let data = JSON.parse(request.responseText);
-        console.log(data);
+
         //Use data from a saved customer object
         infoForm.orderName.value=data[0].orderName;
         infoForm.address.value=data[0].address;
@@ -216,4 +237,16 @@ function autoFill(){
         infoForm.notes.value="Less cheese please"
     }
     request.send();
+}
+
+//Changes all of the toppings buttons to appear off and logically be off
+function resetToppingsButtons(){
+    //Loop through all buttons, set values to false
+    toppingButtonArray.forEach(button => {
+        button.value=false;
+    });
+    //Loop through all button and set styling back the disabled visual
+    toppingButtonArray.forEach(button => {
+        button.style="background-color: rgb(191, 59, 59);"
+    });
 }

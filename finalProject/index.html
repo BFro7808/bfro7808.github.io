@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="icon" type="image/x-icon" href="img/iconPizzaLarge.png">
-    <title>Papino's Pizza</title>
+    <title>Papino's Pizza | Ordering</title>
 </head>
 <body onload="auto()">
     <header>
@@ -21,15 +21,15 @@
 
                     <h3>Select Toppings:</h3>
                     <div id="buttonsGroup">
-                        <button value="false" class="toggleOff" onclick="toggleButtons(this)">Pepperoni</button>
-                        <button value="false" class="toggleOff" onclick="toggleButtons(this)">Bacon</button>
-                        <button value="false" class="toggleOff" onclick="toggleButtons(this)">Sausage</button>
-                        <button value="false" class="toggleOff" onclick="toggleButtons(this)">Mushrooms</button>
+                        <button value="false" class="toggleOff" id="topBtn0" onclick="toggleButtons(this)">Pepperoni</button>
+                        <button value="false" class="toggleOff" id="topBtn1" onclick="toggleButtons(this)">Bacon</button>
+                        <button value="false" class="toggleOff" id="topBtn2" onclick="toggleButtons(this)">Sausage</button>
+                        <button value="false" class="toggleOff" id="topBtn3" onclick="toggleButtons(this)">Mushrooms</button>
                         <br>
-                        <button value="false" class="toggleOff" onclick="toggleButtons(this)">Olives</button>
-                        <button value="false" class="toggleOff" onclick="toggleButtons(this)">Peppers</button>
-                        <button value="false" class="toggleOff" onclick="toggleButtons(this)">Onions</button>
-                        <button value="false" class="toggleOff" onclick="toggleButtons(this)">Pineapple</button>
+                        <button value="false" class="toggleOff" id="topBtn4" onclick="toggleButtons(this)">Olives</button>
+                        <button value="false" class="toggleOff" id="topBtn5" onclick="toggleButtons(this)">Peppers</button>
+                        <button value="false" class="toggleOff" id="topBtn6" onclick="toggleButtons(this)">Onions</button>
+                        <button value="false" class="toggleOff" id="topBtn7" onclick="toggleButtons(this)">Pineapple</button>
                     </div>
 
                     <h3>Pizza Size:</h3>
@@ -41,7 +41,7 @@
                         </select>
                     </div>
                     <br>
-                    <button onclick="let p= new pizza(pizzaSizeSelector.value)">Add To Order</button>
+                    <button onclick="addPizza()">Add To Order</button>
                     <br>
                     <div id="placeOrderDiv">
                         <h2>Step 3: Enter Info and Order</h2>
