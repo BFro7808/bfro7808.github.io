@@ -32,3 +32,9 @@ Nothing really big this time around, though I hadn't used the getElementsByTagNa
 
 Session 13
 I kind of liked this session, building out a form is oddly enjoyable. Something big for me this time around was the use of regular expressions. Up until now I had never used them for anything, but always heard about them. While they look strange, I figured out how to do what I wanted with them pretty quickly. From what little I know about regular expressions, I know that they're extremely useful for data processing, along with things like form validation. Forms themselves are pretty much everywhere, so in the industry I'd assume knowning how to make them and more importantly, how to maintain and correct them is a good skill to have.
+
+Session 14
+AJAX was a little bit of a mystery since I didn't know that I couldn't submit info anywhere without a proper web service, but after knowing that, I got the hang of it easily. Saving and reading info to and from a JSON isn't difficult, especially since the format is very easy to read on its own. I'd presume AJAX/JSON combos are everywhere on the web, even if there isn't JSON, AJAX is probably still involved there somewhere.
+
+Final Project
+This class taught me a lot more about in-depth JavaScript ideas. I had previously taken two classes that revolved around JS, but neither focused on the web site production use of the language. I had a good time problem solving and learning all the new methods and ideas that this class introduced. As for education/ career goals that involve this, I'm not 100% where I'm going with anything yet, but I am most certainly keeping web development, either full-stack or just backend, in my pocket as a possible career.
