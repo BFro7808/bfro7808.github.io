@@ -213,7 +213,7 @@ function autoFill(){
         infoForm.address.value=data[0].address;
         infoForm.phone.value=data[0].phone;
         //Notes aren't saved with customer objects
-        notes.value="Less cheese please"
+        infoForm.notes.value="Less cheese please"
     }
     request.send();
 }
