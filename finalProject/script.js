@@ -131,9 +131,9 @@ function updateOrder(pizza){
 
     //Update the placeorder area visuals
     count.innerHTML=pizzaCount++;//Add 1 to the pizza counter
-    price.innerHTML=formatCurrency(orderPrice);
+    price.innerHTML=formatCurrency(roundToHundreths(orderPrice));
     tax.innerHTML=formatCurrency(roundToHundreths(orderPrice*0.1)); //Show amount taxed
-    totalPrice.innerHTML=formatCurrency(orderPriceTotal);
+    totalPrice.innerHTML=formatCurrency(roundToHundreths(orderPriceTotal));
 
     placeOrderDiv.style="display:inline"; //Unhide the place order section
     // console.table(pizzas);
