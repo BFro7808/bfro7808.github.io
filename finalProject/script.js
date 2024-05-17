@@ -23,10 +23,20 @@ function pizza(size){
     L - $13
     Topping - +0.25
     Then %10 sale tax*/
-    if     (size=="medium")this.price+=mediumPizzaPrice;//Change this pizza's price based on its size
-    else if(size=="small") this.price+=smallPizzaPrice;
-    else                   this.price+=largePizzaPrice;
-    this.price += 0.25*globalToppings.length;           //Add the price of the toppings to the pizza's price
+
+    //Change this pizza's price based on its size
+    if(size=="medium"){
+        this.price+=mediumPizzaPrice;
+        this.price += 0.25*globalToppings.length;
+    }
+    else if(size=="small"){
+        this.price+=smallPizzaPrice;
+        this.price += 0.20*globalToppings.length;
+    }
+    else{
+        this.price+=largePizzaPrice;
+        this.price += 0.30*globalToppings.length;
+    }
 
     //Modify the overall prices of the order
     orderPrice+=this.price; //Add toppings to price
@@ -36,16 +46,42 @@ function pizza(size){
     updateOrder(this) //Finally, update the order list on screen so the user sees the pizza added
 }
 
-//order object WRITE DESC
-//a
-//a
-function order(){
+//Order object, saves the following data: pizzas being ordered, price, totalprice, form info
+//When created, logs itself to the console for proof of data
+function order(name,address,phone,notes){
+    //This info is saved globally
     this.contents=pizzas;
     this.price=orderPrice;
     this.priceTotal=orderPriceTotal;
+    //Save the customer info and the order notes
+    this.customer= new customer(name,address,phone);
+    this.orderNotes=notes;
 
-    this.name;
-    this.address;
+    console.log(this); //Show order data in console since it isn't going anywhere
+}
+
+//Represents the person ordering with all their info
+function customer(name,address,phone){
+    this.orderName=name;
+    this.orderAddress=address;
+    this.orderPhone=phone;
+}
+
+function placeOrder(){
+    //Save all the info from the form to vars
+    let orderName=infoForm.orderName.value;
+    let orderAddress=infoForm.address.value;
+    let orderPhone=infoForm.phone.value;
+    let orderNotes=infoForm.notes.value;
+
+    //Validate order form and notify of errors
+    if(orderAddress.length<5){  //If the address is too short, cancel order placement and highlight the field
+        infoForm.address.style="border:red solid thick;";
+        window.alert("Address is too short.");
+        return;
+    }
+    //If info is valid, create an order object and log it to console
+    let o = new order(orderName,orderAddress,orderPhone,orderNotes)
 }
 
 function toggleButtons(btn){
@@ -96,10 +132,11 @@ function updateOrder(pizza){
     //Update the placeorder area visuals
     count.innerHTML=pizzaCount++;//Add 1 to the pizza counter
     price.innerHTML=formatCurrency(orderPrice);
+    tax.innerHTML=formatCurrency(roundToHundreths(orderPrice*0.1)); //Show amount taxed
     totalPrice.innerHTML=formatCurrency(orderPriceTotal);
 
     placeOrderDiv.style="display:inline"; //Unhide the place order section
-    console.table(pizzas);
+    // console.table(pizzas);
 }
 /* Each order info bit will look like this:
 Pizza image     Pizza Size
@@ -109,6 +146,7 @@ Pizza image     Toppings, comma delimited
 //Function that is run whenever the page loads
 function auto(){
     autoYear();
+    // let p= new pizza(pizzaSizeSelector.value);
 }
 
 //Sets the copyright year as the current year
@@ -161,4 +199,15 @@ function formatCurrency(num){
     }
     //If we didn't find a period, return with a .00 attached
     else return num+".00";
+}
+
+function autoFill(){
+    let request = new XMLHttpRequest();
+    request.open("GET", "auto_info.json");
+    request.onload = function(){
+        let data = JSON.parse(request.responseText);
+        console.log(request.status,request.statusText)
+        console.log(data);
+    }
+    request.send();
 }
