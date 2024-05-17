@@ -209,11 +209,11 @@ function autoFill(){
         let data = JSON.parse(request.responseText);
         console.log(data);
         //Use data from a saved customer object
-        orderName.innerHTML=data[0].orderName;
-        address.innerHTML=data[0].address;
-        phone.innerHTML=data[0].phone;
+        orderName.value=data[0].orderName;
+        address.value=data[0].address;
+        phone.value=data[0].phone;
         //Notes aren't saved with customer objects
-        notes.innerHTML="Less cheese please"
+        notes.value="Less cheese please"
     }
     request.send();
 }
