@@ -209,9 +209,9 @@ function autoFill(){
         let data = JSON.parse(request.responseText);
         console.log(data);
         //Use data from a saved customer object
-        orderName.value=data[0].orderName;
-        address.value=data[0].address;
-        phone.value=data[0].phone;
+        infoForm.orderName.value=data[0].orderName;
+        infoForm.address.value=data[0].address;
+        infoForm.phone.value=data[0].phone;
         //Notes aren't saved with customer objects
         notes.value="Less cheese please"
     }
