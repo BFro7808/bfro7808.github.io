@@ -201,13 +201,19 @@ function formatCurrency(num){
     else return num+".00";
 }
 
+//Fills in the first three form fields using AJAX/JSON, then fills in the notes separately as they aren't saved to a customer object
 function autoFill(){
     let request = new XMLHttpRequest();
     request.open("GET", "auto_info.json");
     request.onload = function(){
         let data = JSON.parse(request.responseText);
-        console.log(request.status,request.statusText)
         console.log(data);
+        //Use data from a saved customer object
+        orderName.innerHTML=data[0].orderName;
+        address.innerHTML=data[0].address;
+        phone.innerHTML=data[0].phone;
+        //Notes aren't saved with customer objects
+        notes.innerHTML="Less cheese please"
     }
     request.send();
 }
